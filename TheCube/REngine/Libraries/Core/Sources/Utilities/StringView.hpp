@@ -18,8 +18,9 @@
 NAMESPACE_BEGIN (REngine::Core)
 ////////////////////////////////////////////////////////////////////////////////
 
-class StringView {
-public:
+class StringView
+{
+ public:
   StringView ();
   StringView (const char* c_str);
   StringView (const std::string_view& str_v);
@@ -30,13 +31,13 @@ public:
   StringView& operator= (const StringView&) = delete;
   StringView& operator= (StringView&&) = delete;
 
-public:
+ public:
   const char* c_str () noexcept;
   const wchar_t* c_wstr () noexcept;
   const std::string_view& string_view () noexcept;
   const std::wstring_view& wstring_view () noexcept;
 
-private:
+ private:
   std::vector<wchar_t> wchar_t_DataBuffer;
   std::string_view internal_string_view;
   std::wstring_view internal_wstring_view;

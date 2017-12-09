@@ -1,4 +1,4 @@
-# pragma once
+#pragma once
 
 ////////////////////////////////////////////////////////////////////////////////
 // Inline methods
@@ -8,16 +8,14 @@
 NAMESPACE_BEGIN (REngine::Core)
 ////////////////////////////////////////////////////////////////////////////////
 
-inline
-const char*
-String::c_str () noexcept
+inline const char*
+  String::c_str () noexcept
 {
   return this->internal_string.c_str ();
 }
 
-inline
-const wchar_t*
-String::c_wstr () noexcept
+inline const wchar_t*
+  String::c_wstr () noexcept
 {
   if (this->internal_wstring.empty ())
   {
@@ -30,14 +28,12 @@ String::c_wstr () noexcept
     std::mbstate_t mbstate = std::mbstate_t ();
     memset (&mbstate, 0, sizeof (std::mbstate_t));
 
-    mbsrtowcs_s (
-      &charCount,
-      dstBuffer.data (),
-      dstBuffer.size (),
-      &srcString,
-      srcStringLength,
-      &mbstate
-    );
+    mbsrtowcs_s (&charCount,
+                 dstBuffer.data (),
+                 dstBuffer.size (),
+                 &srcString,
+                 srcStringLength,
+                 &mbstate);
 
     auto stringData = dstBuffer.data ();
     if (nullptr != stringData)

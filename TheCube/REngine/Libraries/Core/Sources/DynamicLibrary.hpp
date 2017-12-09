@@ -20,25 +20,26 @@
 NAMESPACE_BEGIN (REngine::Core)
 ////////////////////////////////////////////////////////////////////////////////
 
-class DynamicLibrary : implementedBy<Library_Implementation> {
-public:
+class DynamicLibrary : implementedBy<Library_Implementation>
+{
+ public:
   DynamicLibrary (const char* filename);
   DynamicLibrary (const std::string_view& filename);
 
-public:
+ public:
   DynamicLibrary (DynamicLibrary&& library);
 
-public:
+ public:
   DynamicLibrary& operator= (DynamicLibrary&&);
 
-public:
+ public:
   auto GetFilename () noexcept -> const std::string_view;
   auto IsLoaded () noexcept -> bool;
 
   auto Load () -> void;
   auto Unload () -> bool;
 
-public:
+ public:
   template <typename FuncType>
   auto ResolveSymbol (const std::string_view& symbol)
     -> std::function<FuncType>;
@@ -51,9 +52,7 @@ NAMESPACE_END (REngine::Core)
 ////////////////////////////////////////////////////////////////////////////////
 // Inline methods
 ////////////////////////////////////////////////////////////////////////////////
-
 #include "DynamicLibrary.inl"
-
 ////////////////////////////////////////////////////////////////////////////////
 
 ////////////////////////////////////////////////////////////////////////////////

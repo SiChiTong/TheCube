@@ -14,8 +14,9 @@
 NAMESPACE_BEGIN (REngine::Math)
 ////////////////////////////////////////////////////////////////////////////////
 
-class Vector {
-public:
+class Vector
+{
+ public:
   std::string GetVersion ();
 };
 

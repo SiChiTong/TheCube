@@ -7,7 +7,7 @@ NAMESPACE_BEGIN (REngine::Math)
 ////////////////////////////////////////////////////////////////////////////////
 
 std::string
-Vector::GetVersion ()
+  Vector::GetVersion ()
 {
   return "Vector_SSE";
 }

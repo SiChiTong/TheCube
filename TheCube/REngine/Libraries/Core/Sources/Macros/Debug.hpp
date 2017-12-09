@@ -12,14 +12,14 @@
 //    Evaluates an expression and generates a debug report when the result is
 //    false.
 #if !defined(reAssert)
-#  if defined(_DEBUG) && defined (ASSERT_ENABLED)
+#  if defined(_DEBUG) && defined(ASSERT_ENABLED)
 #    if defined(_WINDOWS)
-#       if defined (SHORT_ASSERT)
-#         // Use to compile smaller debug executables
-#         define reAssert _ASSERT
-#       else
-#         define reAssert _ASSERTE
-#       endif // defined (SHORT_ASSERT)
+#      if defined(SHORT_ASSERT)
+#        // Use to compile smaller debug executables
+#        define reAssert _ASSERT
+#      else
+#        define reAssert _ASSERTE
+#      endif // defined (SHORT_ASSERT)
 #    else
 #      error Macro reAssert is not defined...
 #    endif // defined (_WINDOWS)
@@ -39,7 +39,7 @@
 //    Evaluates an expression and generates a debug report when the result is
 //    false with the specified message.
 #if !defined(reAssertM)
-#  if defined(_DEBUG) && defined (ASSERT_ENABLED)
+#  if defined(_DEBUG) && defined(ASSERT_ENABLED)
 #    if defined(_WINDOWS)
 #      define reAssertM(expression, message)                                   \
         _ASSERT_EXPR ((expression), _CRT_WIDE (#expression)##"\n"##message)
@@ -61,7 +61,7 @@
 //    Examinse the result of a function call and generates a debug report when
 //    the result is false.
 #if !defined(reVerify)
-#  if defined(_DEBUG) && defined (ASSERT_ENABLED)
+#  if defined(_DEBUG) && defined(ASSERT_ENABLED)
 #    if defined(_WINDOWS)
 #      define reVerify reAssert
 #    else

@@ -13,14 +13,12 @@ const int interfaceVersion = 1000;
 // Extern functions
 extern "C"
 {
-  const char*
-    GetInterfaceName ()
+  auto GetInterfaceName () -> const char*
   {
     return interfaceName;
   }
 
-  int
-    GetInterfaceVersion ()
+  auto GetInterfaceVersion () -> int
   {
     return interfaceVersion;
   }
@@ -33,13 +31,13 @@ NAMESPACE_BEGIN (REngine::GfxRenderers)
 ////////////////////////////////////////////////////////////////////////////////
 
 std::string
-IGfxRenderer::GetName ()
+  IGfxRenderer::GetName ()
 {
   return this->name;
 }
 
 std::pair<int, int>
-IGfxRenderer::GetVersion ()
+  IGfxRenderer::GetVersion ()
 {
   return this->version;
 }

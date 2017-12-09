@@ -12,7 +12,7 @@
 ################################################################################
 Language:        Cpp
 # BasedOnStyle:  LLVM
-AccessModifierOffset: -2
+AccessModifierOffset: -1
 AlignAfterOpenBracket: Align
 AlignConsecutiveAssignments: false
 AlignConsecutiveDeclarations: false
@@ -32,7 +32,7 @@ AlwaysBreakTemplateDeclarations: true
 BinPackArguments: false
 BinPackParameters: false
 BraceWrapping:   
-  AfterClass:      false
+  AfterClass:      true
   AfterControlStatement: true
   AfterEnum:       true
   AfterFunction:   true

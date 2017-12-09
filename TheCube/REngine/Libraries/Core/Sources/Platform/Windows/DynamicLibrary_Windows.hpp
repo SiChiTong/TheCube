@@ -24,12 +24,13 @@
 NAMESPACE_BEGIN (REngine::Core)
 ////////////////////////////////////////////////////////////////////////////////
 
-class Library_Implementation_Win {
-public:
+class Library_Implementation_Win
+{
+ public:
   Library_Implementation_Win (const std::string_view& filename);
   ~Library_Implementation_Win ();
 
-public:
+ public:
   auto GetFilename () noexcept -> const std::string_view;
   void Load () noexcept;
   auto Unload () noexcept -> bool;
@@ -38,7 +39,7 @@ public:
   auto ResolveSymbol (const std::string_view& symbol)
     -> std::function<FuncType>;
 
-private:
+ private:
   HMODULE libraryHandle;
   std::unique_ptr<REngine::Core::String> filename;
 };

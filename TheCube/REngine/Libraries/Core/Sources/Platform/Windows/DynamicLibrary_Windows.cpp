@@ -8,15 +8,13 @@
 #include <sstream>
 ////////////////////////////////////////////////////////////////////////////////
 
-
 ////////////////////////////////////////////////////////////////////////////////
 NAMESPACE_BEGIN (REngine::Core)
 ////////////////////////////////////////////////////////////////////////////////
 
 Library_Implementation_Win::Library_Implementation_Win (
-  const std::string_view& filename
-)
-  : libraryHandle { nullptr }
+  const std::string_view& filename)
+  : libraryHandle{nullptr}
 {
   std::stringstream ss;
   ss << "lib" << filename.data () << ".dll";
@@ -30,13 +28,13 @@ Library_Implementation_Win::~Library_Implementation_Win ()
 }
 
 const std::string_view
-Library_Implementation_Win::GetFilename() noexcept
+  Library_Implementation_Win::GetFilename () noexcept
 {
   return this->filename->c_str ();
 }
 
 void
-Library_Implementation_Win::Load () noexcept
+  Library_Implementation_Win::Load () noexcept
 {
   if (nullptr == this->libraryHandle)
   {
@@ -45,7 +43,7 @@ Library_Implementation_Win::Load () noexcept
 }
 
 bool
-Library_Implementation_Win::Unload () noexcept
+  Library_Implementation_Win::Unload () noexcept
 {
   auto result = false;
   if (nullptr != this->libraryHandle)

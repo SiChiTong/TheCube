@@ -8,16 +8,14 @@
 NAMESPACE_BEGIN (REngine::Core)
 ////////////////////////////////////////////////////////////////////////////////
 
-inline
-const char*
-StringView::c_str () noexcept
+inline const char*
+  StringView::c_str () noexcept
 {
   return this->internal_string_view.data ();
 }
 
-inline
-const wchar_t*
-StringView::c_wstr () noexcept
+inline const wchar_t*
+  StringView::c_wstr () noexcept
 {
   if (this->internal_wstring_view.empty ())
   {
@@ -29,14 +27,12 @@ StringView::c_wstr () noexcept
     std::mbstate_t mbstate = std::mbstate_t ();
     memset (&mbstate, 0, sizeof (std::mbstate_t));
 
-    mbsrtowcs_s (
-      &charCount,
-      wchar_t_DataBuffer.data (),
-      wchar_t_DataBuffer.size (),
-      &srcString,
-      srcStringLength,
-      &mbstate
-    );
+    mbsrtowcs_s (&charCount,
+                 wchar_t_DataBuffer.data (),
+                 wchar_t_DataBuffer.size (),
+                 &srcString,
+                 srcStringLength,
+                 &mbstate);
 
     auto stringData = wchar_t_DataBuffer.data ();
     if (nullptr != stringData)
@@ -48,16 +44,14 @@ StringView::c_wstr () noexcept
   return this->internal_wstring_view.data ();
 }
 
-inline
-const std::string_view&
-StringView::string_view () noexcept
+inline const std::string_view&
+  StringView::string_view () noexcept
 {
   return this->internal_string_view;
 }
 
-inline
-const std::wstring_view&
-StringView::wstring_view () noexcept
+inline const std::wstring_view&
+  StringView::wstring_view () noexcept
 {
   return this->internal_wstring_view;
 }

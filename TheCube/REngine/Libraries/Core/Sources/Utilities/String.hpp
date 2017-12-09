@@ -18,29 +18,30 @@
 NAMESPACE_BEGIN (REngine::Core)
 ////////////////////////////////////////////////////////////////////////////////
 
-class String {
-public:
+class String
+{
+ public:
   String ();
   String (const char* c_str);
   String (const std::string& str);
 
-public:
+ public:
   String (const String& other);
   String (String&& other);
 
-public:
+ public:
   const String& operator= (const String& other);
   const String& operator= (String&& other);
 
-public:
+ public:
   const String& operator= (const char*& c_str);
   const String& operator= (const std::string& str);
 
-public:
+ public:
   const char* c_str () noexcept;
   const wchar_t* c_wstr () noexcept;
 
-private:
+ private:
   std::string internal_string;
   std::wstring internal_wstring;
 };

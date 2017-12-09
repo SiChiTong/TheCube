@@ -8,16 +8,18 @@
 //    NAMESPACE_START (ns)
 // Parameter:
 //    ns - namespace names
-#if !defined (NAMESPACE_START)
-# define NAMESPACE_BEGIN(ns) namespace ns {
+#if !defined(NAMESPACE_START)
+#  define NAMESPACE_BEGIN(ns)                                                  \
+    namespace ns                                                               \
+    {
 #else
-# error Macro NAMESPACE_START is already defined...
+#  error Macro NAMESPACE_START is already defined...
 #endif // !defined (NAMESPACE_START)
 
-#if !defined (NAMESPACE_END)
-# define NAMESPACE_END(ns) }
+#if !defined(NAMESPACE_END)
+#  define NAMESPACE_END(ns) }
 #else
-# error Macro NAMESPACE_END is already defined...
+#  error Macro NAMESPACE_END is already defined...
 #endif // !defined (NAMESPACE_START)
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -34,11 +36,14 @@
 // warning LNK4221: This object file does not define any previously undefined
 // public symbols, so it will not be used by any link operation that consumes
 // this library
-#if !defined (__Supress_Warning_LNK4221__)
-# define __Supress_Warning_LNK4221__ \
-  namespace { [[maybe_unused]] void* NoEmptyFileDummy##__LINE__; }
+#if !defined(__Supress_Warning__)
+#  define __Supress_Warning__(warning)                                         \
+    namespace                                                                  \
+    {                                                                          \
+    [[maybe_unused]] void* warning##__LINE__;                                  \
+    } // namespace
 #else
-# error Macro __Supress_Warning_LNK4221__ is already defined...
+#  error Macro __Supress_Warning__(warning) is already defined...
 #endif // !defined (__Supress_Warning_LNK4221__)
 
 ////////////////////////////////////////////////////////////////////////////////

@@ -14,12 +14,13 @@
 NAMESPACE_BEGIN (REngine::GfxRenderers)
 ////////////////////////////////////////////////////////////////////////////////
 
-class GfxRenderer : public IGfxRenderer {
-public:
+class GfxRenderer : public IGfxRenderer
+{
+ public:
   GfxRenderer ();
   virtual ~GfxRenderer ();
 
-public:
+ public:
   void Render () final;
 };
 

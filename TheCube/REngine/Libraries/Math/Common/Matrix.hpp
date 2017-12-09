@@ -14,8 +14,9 @@
 NAMESPACE_BEGIN (REngine::Math)
 ////////////////////////////////////////////////////////////////////////////////
 
-class Matrix {
-public:
+class Matrix
+{
+ public:
   std::string GetVersion ();
 };
 

@@ -1,5 +1,7 @@
 #pragma once
 
+// clang-format off
+
 ////////////////////////////////////////////////////////////////////////////////
 // REngine Base
 ////////////////////////////////////////////////////////////////////////////////
@@ -20,29 +22,30 @@
 ////////////////////////////////////////////////////////////////////////////////
 
 // Must be defined by the specialized implementation
-re_ExportFunction (void*, CreateGfxRenderer, (void) )
-  re_ExportFunction (void, DestroyGfxRenderer, (void**) )
+re_ExportFunction (void*, CreateGfxRenderer, (void))
+re_ExportFunction (void, DestroyGfxRenderer, (void**))
 
-  // Defined in GfxRenderer_Base (all implementations need to link to it).
-  re_ExportFunction (const char*, GetInterfaceName, (void) )
-    re_ExportFunction (int, GetInterfaceVersion, (void) )
+// Defined in GfxRenderer_Base (all implementations need to link to it).
+re_ExportFunction (const char*, GetInterfaceName, (void))
+re_ExportFunction (int, GetInterfaceVersion, (void))
 
-  ////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
 
-  ////////////////////////////////////////////////////////////////////////////////
-  NAMESPACE_BEGIN (REngine::GfxRenderers)
-  ////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+NAMESPACE_BEGIN (REngine::GfxRenderers)
+////////////////////////////////////////////////////////////////////////////////
 
-  class IGfxRenderer {
-public:
-public:
+class IGfxRenderer
+{
+ public:
+ public:
   virtual void Render () = 0;
 
-public:
+ public:
   virtual auto GetName () -> std::string;
   virtual auto GetVersion () -> std::pair<int, int>;
 
-protected:
+ protected:
   std::string name;
   std::pair<int, int> version;
 };

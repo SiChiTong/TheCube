@@ -7,7 +7,7 @@ NAMESPACE_BEGIN (REngine::Math)
 ////////////////////////////////////////////////////////////////////////////////
 
 std::string
-Matrix::GetVersion ()
+  Matrix::GetVersion ()
 {
   return "Matrix_SSE";
 }

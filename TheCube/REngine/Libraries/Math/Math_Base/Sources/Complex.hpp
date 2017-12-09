@@ -14,8 +14,9 @@
 NAMESPACE_BEGIN (REngine::Math)
 ////////////////////////////////////////////////////////////////////////////////
 
-class Complex {
-public:
+class Complex
+{
+ public:
   std::string GetVersion ();
 };
 

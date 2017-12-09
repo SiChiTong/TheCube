@@ -15,8 +15,9 @@ NAMESPACE_BEGIN (REngine::Core)
 ////////////////////////////////////////////////////////////////////////////////
 
 template <typename ClassName>
-class implementedBy {
-protected:
+class implementedBy
+{
+ protected:
   implementedBy () = default;
   ~implementedBy () = default;
 
@@ -26,7 +27,7 @@ protected:
   implementedBy& operator= (const implementedBy&) = delete;
   implementedBy& operator= (implementedBy&&) = default;
 
-protected:
+ protected:
   std::unique_ptr<ClassName> ptr_;
 };
 

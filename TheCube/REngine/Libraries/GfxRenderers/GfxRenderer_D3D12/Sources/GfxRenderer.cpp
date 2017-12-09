@@ -2,7 +2,6 @@
 #include "GfxRenderer.hpp"
 ////////////////////////////////////////////////////////////////////////////////
 
-
 ////////////////////////////////////////////////////////////////////////////////
 NAMESPACE_BEGIN (REngine::GfxRenderers)
 ////////////////////////////////////////////////////////////////////////////////
@@ -19,10 +18,9 @@ GfxRenderer::~GfxRenderer ()
   this->version = std::make_pair<int, int> (1, 1);
 }
 
-void 
-GfxRenderer::Render()
-{
-}
+void
+  GfxRenderer::Render ()
+{}
 
 ////////////////////////////////////////////////////////////////////////////////
 NAMESPACE_END (REngine::GfxRenderers)
@@ -34,14 +32,12 @@ NAMESPACE_END (REngine::GfxRenderers)
 
 extern "C"
 {
-  void*
-  CreateGfxRenderer ()
+  void* CreateGfxRenderer ()
   {
     return new REngine::GfxRenderers::GfxRenderer ();
   }
 
-  void
-  DestroyGfxRenderer (void** ptr)
+  void DestroyGfxRenderer (void** ptr)
   {
     delete reinterpret_cast<REngine::GfxRenderers::GfxRenderer*> (*ptr);
     // A pointer is passed by value thus pointer to pointer is required

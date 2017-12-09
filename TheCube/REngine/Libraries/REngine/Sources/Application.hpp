@@ -14,11 +14,12 @@
 NAMESPACE_BEGIN (REngine)
 ////////////////////////////////////////////////////////////////////////////////
 
-class Application {
-public:
+class Application
+{
+ public:
   void Initialize ();
 
-private:
+ private:
   GfxRenderers::IGfxRenderer* gfxRenderer;
 };
 

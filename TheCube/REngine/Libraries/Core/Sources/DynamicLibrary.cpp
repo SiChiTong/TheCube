@@ -28,7 +28,7 @@ DynamicLibrary::DynamicLibrary (DynamicLibrary&& other)
 
 // Copy & move assignment operators
 DynamicLibrary&
-DynamicLibrary::operator= (DynamicLibrary&& other)
+  DynamicLibrary::operator= (DynamicLibrary&& other)
 {
   if (!other.IsLoaded ())
   {
