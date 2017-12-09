@@ -1,0 +1,3 @@
+#pragma once
+
+#include "../../../Libraries/GfxRenderers/Common/IGfxRenderer.hpp"

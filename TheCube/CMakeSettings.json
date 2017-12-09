@@ -1,0 +1,298 @@
+{
+  // See https://go.microsoft.com//fwlink//?linkid=834763 for more information about this file.
+  "environments": [
+    {
+      "environment": "clang_cl_x86",
+      "namespace": "clang_cl_x86_env",
+      "ClangPath": "\"C:/Program Files (x86)/LLVM/msbuild-bin/cl.exe\"",
+      "ClangFlags": "\"-m32\""
+    },
+    {
+      "environment": "clang_cl_x64",
+      "namespace": "clang_cl_x64_env",
+      "ClangPath": "\"C:/Program Files (x86)/LLVM/msbuild-bin/cl.exe\"",
+      "ClangFlags": "\"-m64\""
+    }
+  ],
+  "configurations": [
+    ////////////////////////////////////////////////////////////////////////////
+    // MSVC-Ninja-x64-Debug
+    ////////////////////////////////////////////////////////////////////////////
+    {
+      "name": "MSVC-Ninja-x64-Debug",
+      "generator": "Ninja",
+      "configurationType": "Debug",
+      "inheritEnvironments": [ "msvc_x64_x64" ],
+      "buildRoot": "${workspaceRoot}\\..\\__build-output\\${name}",
+      "installRoot": "${workspaceRoot}\\..\\__install-output",
+      "cmakeCommandArgs": "",
+      "variables": [
+        {
+          "name": "option_EnableAssertions:BOOL",
+          "value": "YES"
+        },
+        {
+          "name": "option_EnableUnitTests:BOOL",
+          "value": "NO"
+        },
+        {
+          "name": "option_Executable_EnableRequireAdministrator:BOOL",
+          "value": "NO"
+        }
+      ],
+      "buildCommandArgs": "-v",
+      "ctestCommandArgs": ""
+    },
+    ////////////////////////////////////////////////////////////////////////////
+    // MSVC-Ninja-x64-RelWithDebInfo
+    ////////////////////////////////////////////////////////////////////////////
+    {
+      "name": "MSVC-Ninja-x64-RelWithDebInfo",
+      "generator": "Ninja",
+      "configurationType": "RelWithDebInfo",
+      "inheritEnvironments": [ "msvc_x64_x64" ],
+      "buildRoot": "${workspaceRoot}\\..\\__build-output\\${name}",
+      "installRoot": "${workspaceRoot}\\..\\__install-output",
+      "cmakeCommandArgs": "",
+      "variables": [
+        {
+          "name": "option_EnableUnitTests:BOOL",
+          "value": "NO"
+        },
+        {
+          "name": "option_Executable_EnableRequireAdministrator:BOOL",
+          "value": "NO"
+        }
+      ],
+      "buildCommandArgs": "-v",
+      "ctestCommandArgs": ""
+    },
+    ////////////////////////////////////////////////////////////////////////////
+    // MSVC-VS2017-x64-Debug
+    ////////////////////////////////////////////////////////////////////////////
+    {
+      "name": "MSVC-VS2017-x64-Debug",
+      "generator": "Visual Studio 15 2017 Win64",
+      "configurationType": "Debug",
+      "buildRoot": "${workspaceRoot}\\..\\__build-output\\${name}",
+      "installRoot": "${workspaceRoot}\\..\\__install-output",
+      "cmakeCommandArgs": "",
+      "variables": [
+        {
+          "name": "option_EnableAssertions:BOOL",
+          "value": "YES"
+        },
+        {
+          "name": "option_EnableUnitTests:BOOL",
+          "value": "YES"
+        },
+        {
+          "name": "option_Executable_EnableRequireAdministrator:BOOL",
+          "value": "NO"
+        }
+      ],
+      "buildCommandArgs": "-m -v:minimal",
+      "ctestCommandArgs": ""
+    },
+    ////////////////////////////////////////////////////////////////////////////
+    // MSVC-VS2017-x64-RelWithDebInfo
+    ////////////////////////////////////////////////////////////////////////////
+    {
+      "name": "MSVC-VS2017-x64-RelWithDebInfo",
+      "generator": "Visual Studio 15 2017 Win64",
+      "configurationType": "RelWithDebInfo",
+      "buildRoot": "${workspaceRoot}\\..\\__build-output\\${name}",
+      "installRoot": "${workspaceRoot}\\..\\__install-output",
+      "cmakeCommandArgs": "",
+      "variables": [
+        {
+          "name": "option_EnableUnitTests:BOOL",
+          "value": "NO"
+        },
+        {
+          "name": "option_Executable_EnableRequireAdministrator:BOOL",
+          "value": "NO"
+        }
+      ],
+      "buildCommandArgs": "-m -v:minimal",
+      "ctestCommandArgs": ""
+    },
+    ////////////////////////////////////////////////////////////////////////////
+    // Clang-Ninja-x64-Debug
+    ////////////////////////////////////////////////////////////////////////////
+    {
+      "name": "Clang-Ninja-x64-Debug",
+      "generator": "Ninja",
+      "configurationType": "Debug",
+      "inheritEnvironments": [ "clang_cl_x64", "msvc_x64" ],
+      "buildRoot": "${workspaceRoot}\\..\\__build-output\\${name}",
+      "installRoot": "${workspaceRoot}\\..\\__install-output\\${name}",
+      "cmakeCommandArgs": "-DCMAKE_C_COMPILER=${clang_cl_x64_env.ClangPath} -DCMAKE_CXX_COMPILER=${clang_cl_x64_env.ClangPath}",
+      "variables": [
+        {
+          "name": "CMAKE_C_FLAGS",
+          "value": "${clang_cl_x64_env.ClangFlags}"
+        },
+        {
+          "name": "CMAKE_CXX_FLAGS",
+          "value": "${clang_cl_x64_env.ClangFlags}"
+        },
+        {
+          "name": "CMAKE_VERBOSE_MAKEFILE:BOOL",
+          "value": "OFF"
+        },
+        {
+          "name": "option_EnableUnitTests:BOOL",
+          "value": "NO"
+        },
+        {
+          "name": "option_Executable_EnableRequireAdministrator:BOOL",
+          "value": "NO"
+        }
+      ],
+      "buildCommandArgs": "-v",
+      "ctestCommandArgs": ""
+    },
+    ////////////////////////////////////////////////////////////////////////////
+    // Clang-Ninja-x64-RelWithDebInfo"
+    ////////////////////////////////////////////////////////////////////////////
+    {
+      "name": "Clang-Ninja-x64-RelWithDebInfo",
+      "generator": "Ninja",
+      "configurationType": "RelWithDebInfo",
+      "inheritEnvironments": [ "clang_cl_x64", "msvc_x64" ],
+      "buildRoot": "${workspaceRoot}\\..\\__build-output\\${name}",
+      "installRoot": "${workspaceRoot}\\..\\__install-output\\${name}",
+      "cmakeCommandArgs": "-DCMAKE_C_COMPILER=${clang_cl_x64_env.ClangPath} -DCMAKE_CXX_COMPILER=${clang_cl_x64_env.ClangPath}",
+      "variables": [
+        {
+          "name": "CMAKE_C_FLAGS",
+          "value": "${clang_cl_x64_env.ClangFlags}"
+        },
+        {
+          "name": "CMAKE_CXX_FLAGS",
+          "value": "${clang_cl_x64_env.ClangFlags}"
+        },
+        {
+          "name": "CMAKE_VERBOSE_MAKEFILE:BOOL",
+          "value": "OFF"
+        },
+        {
+          "name": "option_EnableUnitTests:BOOL",
+          "value": "NO"
+        },
+        {
+          "name": "option_Executable_EnableRequireAdministrator:BOOL",
+          "value": "NO"
+        }
+      ],
+      "buildCommandArgs": "-v",
+      "ctestCommandArgs": ""
+    },
+    ////////////////////////////////////////////////////////////////////////////
+    // Clang-VS2017-x64-Debug
+    ////////////////////////////////////////////////////////////////////////////
+    {
+      "name": "Clang-VS2017-x64-Debug",
+      "generator": "Visual Studio 15 2017 Win64",
+      "configurationType": "Debug",
+      "buildRoot": "${workspaceRoot}\\..\\__build-output\\${name}",
+      "installRoot": "${workspaceRoot}\\..\\__install-output",
+      "cmakeCommandArgs": "-TLLVM-vs2017",
+      "variables": [
+        {
+          "name": "option_EnableAssertions:BOOL",
+          "value": "YES"
+        },
+        {
+          "name": "option_EnableAssertions:BOOL",
+          "value": "YES"
+        },
+        {
+          "name": "option_EnableUnitTests:BOOL",
+          "value": "NO"
+        },
+        {
+          "name": "option_Executable_EnableRequireAdministrator:BOOL",
+          "value": "NO"
+        }
+      ],
+      "buildCommandArgs": "-m -v:minimal",
+      "ctestCommandArgs": ""
+    },
+    ////////////////////////////////////////////////////////////////////////////
+    // Clang-VS2017-x64-RelWithDebInfo
+    ////////////////////////////////////////////////////////////////////////////
+    {
+      "name": "Clang-VS2017-x64-RelWithDebInfo",
+      "generator": "Visual Studio 15 2017 Win64",
+      "configurationType": "RelWithDebInfo",
+      "buildRoot": "${workspaceRoot}\\..\\__build-output\\${name}",
+      "installRoot": "${workspaceRoot}\\..\\__install-output",
+      "cmakeCommandArgs": "-TLLVM-vs2017",
+      "variables": [
+        {
+          "name": "option_EnableUnitTests:BOOL",
+          "value": "NO"
+        },
+        {
+          "name": "option_Executable_EnableRequireAdministrator:BOOL",
+          "value": "NO"
+        }
+      ],
+      "buildCommandArgs": "-m -v:minimal",
+      "ctestCommandArgs": ""
+    },
+    ////////////////////////////////////////////////////////////////////////////
+    // MSVC-VS2017-UWP-x64-Debug
+    ////////////////////////////////////////////////////////////////////////////
+    {
+      "name": "MSVC-VS2017-UWP-x64-Debug",
+      "generator": "Visual Studio 15 2017 Win64",
+      "configurationType": "Debug",
+      "buildRoot": "${workspaceRoot}\\..\\__build-output\\${name}",
+      "installRoot": "${workspaceRoot}\\..\\__install-output",
+      "cmakeCommandArgs": "",
+      "variables": [
+        {
+          "name": "option_EnableAssertions:BOOL",
+          "value": "YES"
+        },
+        {
+          "name": "CMAKE_SYSTEM_NAME",
+          "value": "WindowsStore"
+        },
+        {
+          "name": "CMAKE_SYSTEM_VERSION",
+          "value": "10.0.16299.15"
+        }
+      ],
+      "buildCommandArgs": "-m -v:minimal",
+      "ctestCommandArgs": ""
+    },
+    ////////////////////////////////////////////////////////////////////////////
+    // MSVC-VS2017-UWP-x64-RelWithDebInfo
+    ////////////////////////////////////////////////////////////////////////////
+    {
+      "name": "MSVC-VS2017-UWP-x64-RelWithDebInfo",
+      "generator": "Visual Studio 15 2017 Win64",
+      "configurationType": "RelWithDebInfo",
+      "buildRoot": "${workspaceRoot}\\..\\__build-output\\${name}",
+      "installRoot": "${workspaceRoot}\\..\\__install-output",
+      "cmakeCommandArgs": "",
+      "variables": [
+        {
+          "name": "CMAKE_SYSTEM_NAME",
+          "value": "WindowsStore"
+        },
+        {
+          "name": "CMAKE_SYSTEM_VERSION",
+          "value": "10.0.16299.15"
+        }
+      ],
+      "buildCommandArgs": "-m -v:minimal",
+      "ctestCommandArgs": ""
+    }
+    ////////////////////////////////////////////////////////////////////////////
+  ]
+}

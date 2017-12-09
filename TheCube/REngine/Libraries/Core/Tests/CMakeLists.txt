@@ -1,0 +1,5 @@
+if (option_EnableUnitTests)
+  re_LogInfo (PREFIX "${Library_REngine_Core}" "Configuring tests:")
+  add_subdirectory (String)
+  add_subdirectory (StringView)
+endif ()

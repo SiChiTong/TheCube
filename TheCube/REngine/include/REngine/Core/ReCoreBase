@@ -1,0 +1,4 @@
+#pragma once
+
+#include "../../../Libraries/Core/Sources/Macros/Debug.hpp"
+#include "../../../Libraries/Core/Sources/Macros/Utilities.hpp"
