@@ -7,8 +7,9 @@ cmake_minimum_required (VERSION 3.9.0 FATAL_ERROR)
 ################################################################################
 
 ################################################################################
-re_LogSection (PREFIX "${ProjectName}"
-  "${ProjectVersion} is being configured now..."
+re_LogSectionMultiline (SECTION_TOP PREFIX "${ProjectName}"
+  "${ProjectName} is being configured now..."
+  "..."
 )
 ################################################################################
 
@@ -24,9 +25,27 @@ add_executable("${ProjectName}" ${TheCube_SourceFiles})
 set_property (DIRECTORY ${CMAKE_SOURCE_DIR} 
   PROPERTY VS_STARTUP_PROJECT "${ProjectName}"
 )
+# Set the build output directory
+if ("${re_var_IDE_BUILD_TOOL_GENERATOR}" STREQUAL "Visual Studio")
+  set (IsVisualStudio TRUE)
+  set (InstallDirectory "${CMAKE_INSTALL_PREFIX}/${ProjectName}")
+  re_LogInfoMultiline (PREFIX "${ProjectName}" "working directory:"
+    "-> ${InstallDirectory}"
+  )
+  set (OutputDirectory "${InstallDirectory}-VS")
+  re_LogInfoMultiline (PREFIX "${ProjectName}" "build output directory:"
+    "-> ${OutputDirectory}"
+  )
+endif ()
+set_target_properties ("${ProjectName}"
+  PROPERTIES
+    VS_DEBUGGER_WORKING_DIRECTORY
+      $<$<BOOL:${IsVisualStudio}>:${InstallDirectory}>
+    RUNTIME_OUTPUT_DIRECTORY
+      $<$<BOOL:${IsVisualStudio}>:${OutputDirectory}>
+)
 
 # Set linker flags
-# (Windows)
 if (re_var_WINDOWS_MSVC)
   re_SetLinkerFlags ("${ProjectName}"
     # https://docs.microsoft.com/en-gb/cpp/build/reference/linker-options
@@ -51,7 +70,6 @@ if (re_var_WINDOWS_MSVC)
   endif ()
 endif ()
 
-
 # Link libraries
 target_link_libraries ("${ProjectName}"
 	"${re_var_Library_REngine}" # Defined in the REngine library
@@ -64,9 +82,11 @@ set (InstallationFolder "${CMAKE_INSTALL_PREFIX}/${ProjectName}")
 get_filename_component (InstallationFolder
   "${InstallationFolder}" ABSOLUTE
 )
-re_LogSectionMultiline (PREFIX "${ProjectName}" "will be installed into:"
-  ARROWS "${InstallationFolder}"
+re_LogSectionMultiline (SECTION_BOTTOM
+  PREFIX "${ProjectName}" "will be installed into:"
+  "-> ${InstallationFolder}"
 )
+
 install (TARGETS "${ProjectName}"
   RUNTIME DESTINATION "${InstallationFolder}"
 )

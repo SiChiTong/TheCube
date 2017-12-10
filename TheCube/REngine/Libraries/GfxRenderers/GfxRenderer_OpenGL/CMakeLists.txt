@@ -39,6 +39,25 @@ add_library ("${Library_REngine_GfxRenderer}" MODULE ${GfxRenderer_SourceFiles})
 set_target_properties ("${Library_REngine_GfxRenderer}" 
   PROPERTIES FOLDER "${SubprojectFolder}"
 )
+# Set the build output directory
+if ("${re_var_IDE_BUILD_TOOL_GENERATOR}" STREQUAL "Visual Studio")
+  set (IsVisualStudio TRUE)
+  set (InstallDirectory "${CMAKE_INSTALL_PREFIX}/${ProjectName}")
+  re_LogInfoMultiline (PREFIX "${SubprojectName}" "working directory:"
+    "-> ${InstallDirectory}"
+  )
+  set (OutputDirectory "${InstallDirectory}-VS")
+  re_LogInfoMultiline (PREFIX "${SubprojectName}" "build output directory:"
+    "-> ${OutputDirectory}"
+  )
+endif ()
+set_target_properties ("${Library_REngine_GfxRenderer}"
+  PROPERTIES
+    VS_DEBUGGER_WORKING_DIRECTORY
+      $<$<BOOL:${IsVisualStudio}>:${InstallDirectory}>
+    LIBRARY_OUTPUT_DIRECTORY
+      $<$<BOOL:${IsVisualStudio}>:${OutputDirectory}>
+)
 
 target_link_libraries ("${Library_REngine_GfxRenderer}"
   PUBLIC
@@ -57,7 +76,7 @@ get_filename_component (InstallationFolder
 )
 re_LogSectionMultiline (SECTION_BOTTOM
   PREFIX "${SubprojectName}" "will be installed into:"
-  ARROWS "${InstallationFolder}"
+  "-> ${InstallationFolder}"
 )
 install (TARGETS "${Library_REngine_GfxRenderer}"
   LIBRARY DESTINATION "${InstallationFolder}"
