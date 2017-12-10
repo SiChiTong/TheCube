@@ -28,7 +28,7 @@ NAMESPACE_BEGIN (REngine)
 void
   Application::Initialize ()
 {
-  Core::DynamicLibrary dynamicLibrary{"GfxRenderer_D3D12"};
+  Core::DynamicLibrary dynamicLibrary{ "GfxRenderer_D3D12" };
   dynamicLibrary.Load ();
 
   auto CreateGfxRenderer =
@@ -55,6 +55,11 @@ void
   OutputDebugString (ss.str ().c_str ());
 
   DestroyGfxRenderer (reinterpret_cast<void**> (&this->gfxRenderer));
+
+  // reVerify (CloseHandle (nullptr));
+  // reVerify (DestroyWindow (nullptr));
+  // reVerify_ (CloseHandle (nullptr));
+  // reVerify_ (DestroyWindow (nullptr));
 }
 
 ////////////////////////////////////////////////////////////////////////////////

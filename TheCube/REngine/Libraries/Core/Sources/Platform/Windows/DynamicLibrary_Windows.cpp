@@ -14,7 +14,7 @@ NAMESPACE_BEGIN (REngine::Core)
 
 Library_Implementation_Win::Library_Implementation_Win (
   const std::string_view& filename)
-  : libraryHandle{nullptr}
+  : libraryHandle{ nullptr }
 {
   std::stringstream ss;
   ss << "lib" << filename.data () << ".dll";

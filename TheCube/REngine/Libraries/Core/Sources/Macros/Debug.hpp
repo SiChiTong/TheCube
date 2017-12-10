@@ -3,7 +3,9 @@
 ////////////////////////////////////////////////////////////////////////////////
 // System headers
 ////////////////////////////////////////////////////////////////////////////////
+#include <Windows.h>
 #include <crtdbg.h>
+#include <strsafe.h>
 ////////////////////////////////////////////////////////////////////////////////
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -31,10 +33,10 @@
 #    endif // defined (_WINDOWS)
 #  else
 #    define reAssert(expression)
-#  endif // defined (_DEBUG) && defined (ASSERT_ENABLED)
+#  endif // defined(_DEBUG) && defined(ASSERT_ENABLED)
 #else
 #  error Macro reAssert is already defined...
-#endif // !defined (reAssert)
+#endif // !defined(reAssert)
 
 // Macro name:
 //    reAssert
@@ -51,33 +53,91 @@
         _ASSERT_EXPR ((expression), _CRT_WIDE (#expression)##"\n"##message)
 #    else
 #      error Macro reAssertM is not defined...
-#    endif // defined (_WINDOWS)
+#    endif // defined(_WINDOWS)
 #  else
 #    define reAssertM(expression, message)
-#  endif // defined (_DEBUG) && defined (ASSERT_ENABLED)
+#  endif // defined(_DEBUG) && defined(ASSERT_ENABLED)
 #else
 #  error Macro reAssertM is already defined...
-#endif // !defined (reAssert)
+#endif // !defined(reAssertM)
 
 // Macro name:
 //    reVerify
 // Parameter:
 //    function
 // Description:
-//    Examinse the result of a function call and generates a debug report when
-//    the result is false.
+//    Examines the result of a function call, retrieves the system error message
+//    for the last-error code and generates a debug report when the result is
+//    false.
 #if !defined(reVerify)
 #  if defined(_DEBUG) && defined(ASSERT_ENABLED)
 #    if defined(_WINDOWS)
-#      define reVerify reAssert
-#    else
-#      error Macro reVerify is not defined...
-#    endif // defined (_WINDOWS)
+inline void
+  reVerify_Function (BOOL result, const TCHAR* function)
+{
+  if (!result)
+  {
+    LPVOID lpMsgBuf;
+    LPVOID lpDisplayBuf;
+    DWORD dw = GetLastError ();
+
+    FormatMessage (FORMAT_MESSAGE_ALLOCATE_BUFFER | FORMAT_MESSAGE_FROM_SYSTEM
+                     | FORMAT_MESSAGE_IGNORE_INSERTS,
+                   NULL,
+                   dw,
+                   MAKELANGID (LANG_NEUTRAL, SUBLANG_DEFAULT),
+                   (LPTSTR) &lpMsgBuf,
+                   0,
+                   NULL);
+
+    lpDisplayBuf = (LPVOID) LocalAlloc (
+      LMEM_ZEROINIT,
+      (lstrlen ((LPCTSTR) lpMsgBuf) + lstrlen (function) + 40)
+        * sizeof (TCHAR));
+
+    StringCchPrintf ((LPTSTR) lpDisplayBuf,
+                     LocalSize (lpDisplayBuf) / sizeof (TCHAR),
+                     TEXT ("%s\n"
+                           "    failed with error %d: %s"),
+                     function,
+                     dw,
+                     lpMsgBuf);
+
+    _ASSERT_EXPR (result, lpDisplayBuf);
+
+    LocalFree (lpMsgBuf);
+    LocalFree (lpDisplayBuf);
+  }
+}
+#      define reVerify(function)                                               \
+        reVerify_Function ((function), (_CRT_WIDE (#function)))
+#    endif // defined(_WINDOWS)
 #  else
-#    define reVerify(expression)
-#  endif // defined (_DEBUG) && defined (ASSERT_ENABLED)
+#    define reVerify(function)
+#  endif // defined(_DEBUG) && defined(ASSERT_ENABLED)
 #else
 #  error Macro reAssert is already defined...
-#endif // !defined (reAssert)
+#endif // !defined(reVerify)
+
+// Macro name:
+//    reVerify_
+// Parameter:
+//    function
+// Description:
+//    Examines the result of a function call and generates a debug report when
+//    the result is false.
+#if !defined(reVerify_)
+#  if defined(_DEBUG) && defined(ASSERT_ENABLED)
+#    if defined(_WINDOWS)
+#      define reVerify_ reAssert
+#    else
+#      error Macro reVerify is not defined...
+#    endif // defined(_WINDOWS)
+#  else
+#    define reVerify_(function)
+#  endif // defined(_DEBUG) && defined(ASSERT_ENABLED)
+#else
+#  error Macro reAssert is already defined...
+#endif // !defined(reVerify)
 
 ////////////////////////////////////////////////////////////////////////////////

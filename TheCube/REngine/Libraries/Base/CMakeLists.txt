@@ -67,6 +67,7 @@ target_compile_definitions("${Library_REngine_Base}"
     $<$<BOOL:${option_EnableAssertions}>:ASSERT_ENABLED>
     $<$<BOOL:${re_var_WINDOWS}>:_UNICODE>
     $<$<BOOL:${re_var_WINDOWS}>:UNICODE>
+    $<$<BOOL:${re_var_WINDOWS}>:WIN32_LEAN_AND_MEAN>
 )
 
 # Disable compiler warnings
