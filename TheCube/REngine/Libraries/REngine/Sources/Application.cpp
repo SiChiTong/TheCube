@@ -55,11 +55,6 @@ void
   OutputDebugString (ss.str ().c_str ());
 
   DestroyGfxRenderer (reinterpret_cast<void**> (&this->gfxRenderer));
-
-  // reVerify (CloseHandle (nullptr));
-  // reVerify (DestroyWindow (nullptr));
-  // reVerify_ (CloseHandle (nullptr));
-  // reVerify_ (DestroyWindow (nullptr));
 }
 
 ////////////////////////////////////////////////////////////////////////////////

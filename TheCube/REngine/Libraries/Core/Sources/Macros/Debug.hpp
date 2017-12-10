@@ -72,45 +72,42 @@
 #if !defined(reVerify)
 #  if defined(_DEBUG) && defined(ASSERT_ENABLED)
 #    if defined(_WINDOWS)
-inline void
-  reVerify_Function (BOOL result, const TCHAR* function)
-{
-  if (!result)
-  {
-    LPVOID lpMsgBuf;
-    LPVOID lpDisplayBuf;
-    DWORD dw = GetLastError ();
-
-    FormatMessage (FORMAT_MESSAGE_ALLOCATE_BUFFER | FORMAT_MESSAGE_FROM_SYSTEM
-                     | FORMAT_MESSAGE_IGNORE_INSERTS,
-                   NULL,
-                   dw,
-                   MAKELANGID (LANG_NEUTRAL, SUBLANG_DEFAULT),
-                   (LPTSTR) &lpMsgBuf,
-                   0,
-                   NULL);
-
-    lpDisplayBuf = (LPVOID) LocalAlloc (
-      LMEM_ZEROINIT,
-      (lstrlen ((LPCTSTR) lpMsgBuf) + lstrlen (function) + 40)
-        * sizeof (TCHAR));
-
-    StringCchPrintf ((LPTSTR) lpDisplayBuf,
-                     LocalSize (lpDisplayBuf) / sizeof (TCHAR),
-                     TEXT ("%s\n"
-                           "    failed with error %d: %s"),
-                     function,
-                     dw,
-                     lpMsgBuf);
-
-    _ASSERT_EXPR (result, lpDisplayBuf);
-
-    LocalFree (lpMsgBuf);
-    LocalFree (lpDisplayBuf);
-  }
-}
 #      define reVerify(function)                                               \
-        reVerify_Function ((function), (_CRT_WIDE (#function)))
+        if (!function)                                                         \
+        {                                                                      \
+          LPVOID lpMsgBuf;                                                     \
+          LPVOID lpDisplayBuf;                                                 \
+          DWORD dw = GetLastError ();                                          \
+                                                                               \
+          FormatMessage (FORMAT_MESSAGE_ALLOCATE_BUFFER                        \
+                           | FORMAT_MESSAGE_FROM_SYSTEM                        \
+                           | FORMAT_MESSAGE_IGNORE_INSERTS,                    \
+                         NULL,                                                 \
+                         dw,                                                   \
+                         MAKELANGID (LANG_NEUTRAL, SUBLANG_DEFAULT),           \
+                         (LPTSTR) &lpMsgBuf,                                   \
+                         0,                                                    \
+                         NULL);                                                \
+                                                                               \
+          lpDisplayBuf =                                                       \
+            (LPVOID) LocalAlloc (LMEM_ZEROINIT,                                \
+                                 (lstrlen ((LPCTSTR) lpMsgBuf)                 \
+                                  + lstrlen (_CRT_WIDE (#function)) + 40)      \
+                                   * sizeof (TCHAR));                          \
+                                                                               \
+          StringCchPrintf ((LPTSTR) lpDisplayBuf,                              \
+                           LocalSize (lpDisplayBuf) / sizeof (TCHAR),          \
+                           TEXT ("%s\n"                                        \
+                                 "    failed with error %d: %s"),              \
+                           _CRT_WIDE (#function),                              \
+                           dw,                                                 \
+                           lpMsgBuf);                                          \
+                                                                               \
+          _ASSERT_EXPR ((function), lpDisplayBuf);                             \
+                                                                               \
+          LocalFree (lpMsgBuf);                                                \
+          LocalFree (lpDisplayBuf);                                            \
+        }
 #    endif // defined(_WINDOWS)
 #  else
 #    define reVerify(function)
