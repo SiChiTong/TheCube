@@ -31,30 +31,39 @@ void
   Core::DynamicLibrary dynamicLibrary{ "GfxRenderer_D3D12" };
   dynamicLibrary.Load ();
 
-  auto CreateGfxRenderer =
-    dynamicLibrary.ResolveSymbol<CreateGfxRenderer_funcType> (
-      "CreateGfxRenderer");
-  auto DestroyGfxRenderer =
-    dynamicLibrary.ResolveSymbol<DestroyGfxRenderer_funcType> (
-      "DestroyGfxRenderer");
-  auto GetIntefaceName =
-    dynamicLibrary.ResolveSymbol<GetInterfaceName_funcType> (
-      "GetInterfaceName");
-  auto GetIntefaceVersion =
-    dynamicLibrary.ResolveSymbol<GetInterfaceVersion_funcType> (
-      "GetInterfaceVersion");
+  if (dynamicLibrary.IsLoaded ())
+  {
+    auto CreateGfxRenderer =
+      dynamicLibrary.ResolveSymbol<CreateGfxRenderer_funcType> (
+        "CreateGfxRenderer");
+    auto DestroyGfxRenderer =
+      dynamicLibrary.ResolveSymbol<DestroyGfxRenderer_funcType> (
+        "DestroyGfxRenderer");
+    auto GetIntefaceName =
+      dynamicLibrary.ResolveSymbol<GetInterfaceName_funcType> (
+        "GetInterfaceName");
+    auto GetIntefaceVersion =
+      dynamicLibrary.ResolveSymbol<GetInterfaceVersion_funcType> (
+        "GetInterfaceVersion");
 
-  this->gfxRenderer =
-    reinterpret_cast<GfxRenderers::IGfxRenderer*> (CreateGfxRenderer ());
+    this->gfxRenderer =
+      reinterpret_cast<GfxRenderers::IGfxRenderer*> (CreateGfxRenderer ());
 
-  std::wstringstream ss;
-  ss << gfxRenderer->GetName ().c_str ();
-  auto [major, minor] = gfxRenderer->GetVersion ();
-  ss << " version " << major << "." << minor << "\n";
+    std::wstringstream ss;
+    ss << gfxRenderer->GetName ().c_str ();
+    auto [major, minor] = gfxRenderer->GetVersion ();
+    ss << " version " << major << "." << minor << "\n";
 
-  OutputDebugString (ss.str ().c_str ());
+    OutputDebugString (ss.str ().c_str ());
 
-  DestroyGfxRenderer (reinterpret_cast<void**> (&this->gfxRenderer));
+    DestroyGfxRenderer (reinterpret_cast<void**> (&this->gfxRenderer));
+  }
+  else
+  {
+    std::wstringstream ss;
+    ss << dynamicLibrary.GetFilename ().data () << " failed to load\n";
+    OutputDebugString (ss.str ().c_str ());
+  }
 }
 
 ////////////////////////////////////////////////////////////////////////////////

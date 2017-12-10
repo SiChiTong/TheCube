@@ -26,18 +26,6 @@ DynamicLibrary::DynamicLibrary (DynamicLibrary&& other)
   }
 }
 
-// Copy & move assignment operators
-DynamicLibrary&
-  DynamicLibrary::operator= (DynamicLibrary&& other)
-{
-  if (!other.IsLoaded ())
-  {
-    this->ptr_.reset (other.ptr_.release ());
-  }
-
-  return *this;
-}
-
 ////////////////////////////////////////////////////////////////////////////////
 NAMESPACE_END (REngine::Core)
 ////////////////////////////////////////////////////////////////////////////////

@@ -73,7 +73,7 @@
 #  if defined(_DEBUG) && defined(ASSERT_ENABLED)
 #    if defined(_WINDOWS)
 #      define reVerify(function)                                               \
-        if (!function)                                                         \
+        if (!(function))                                                       \
         {                                                                      \
           LPVOID lpMsgBuf;                                                     \
           LPVOID lpDisplayBuf;                                                 \

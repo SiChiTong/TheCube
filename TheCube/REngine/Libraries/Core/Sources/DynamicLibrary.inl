@@ -4,6 +4,18 @@
 NAMESPACE_BEGIN (REngine::Core)
 ////////////////////////////////////////////////////////////////////////////////
 
+// Copy & move assignment operators
+inline DynamicLibrary&
+DynamicLibrary::operator= (DynamicLibrary&& other)
+{
+  if (!other.IsLoaded ())
+  {
+    this->ptr_.reset (other.ptr_.release ());
+  }
+
+  return *this;
+}
+
 // Methods
 inline const std::string_view
   DynamicLibrary::GetFilename () noexcept

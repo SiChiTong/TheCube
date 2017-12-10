@@ -26,12 +26,19 @@ class ObjectHandle
   ~ObjectHandle ();
 
  public:
-  ObjectHandle (const ObjectHandleTraits& other) = delete;
+  ObjectHandle (const ObjectHandle& other) = delete;
+  ObjectHandle (ObjectHandle&& other);
 
  public:
-  const ObjectHandle& operator= (const ObjectHandleTraits& other) = delete;
+  auto operator= (const ObjectHandle& other) -> const ObjectHandle& = delete;
+  auto operator= (ObjectHandle&& other) -> ObjectHandle&;
 
  public:
+  auto Get () -> HandleType;
+  auto Release () -> HandleType;
+  void Reset (HandleType handle = ObjectHandleTraits::InvalidHandle ());
+
+ private:
   void Close () noexcept;
 
  private:
@@ -44,7 +51,7 @@ struct InvalidValueHandleTraits
   using HandleType = HANDLE;
 
   static void Close (HandleType handle) noexcept;
-  static auto Invalid () noexcept -> HandleType;
+  static auto InvalidHandle () noexcept -> HandleType;
 };
 
 struct NullptrHandleTraits
@@ -52,7 +59,7 @@ struct NullptrHandleTraits
   using HandleType = HANDLE;
 
   static void Close (HandleType handle) noexcept;
-  static auto Invalid () noexcept -> HandleType;
+  static auto InvalidHandle () noexcept -> HandleType;
 };
 
 struct WindowHandleTraits
@@ -60,8 +67,13 @@ struct WindowHandleTraits
   using HandleType = HWND;
 
   static void Close (HandleType handle) noexcept;
-  static auto Invalid () noexcept -> HandleType;
+  static auto InvalidHandle () noexcept -> HandleType;
 };
+
+// Handle types
+using NullptrHandle = ObjectHandle<NullptrHandleTraits>;
+using InvalidValueHandle = ObjectHandle<InvalidValueHandleTraits>;
+using WindowHandle = ObjectHandle<WindowHandleTraits>;
 
 ////////////////////////////////////////////////////////////////////////////////
 NAMESPACE_END (REngine::Core)
