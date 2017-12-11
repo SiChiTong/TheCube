@@ -28,11 +28,11 @@ set_property (DIRECTORY ${CMAKE_SOURCE_DIR}
 # Set the build output directory
 if ("${re_var_IDE_BUILD_TOOL_GENERATOR}" STREQUAL "Visual Studio")
   set (IsVisualStudio TRUE)
-  set (InstallDirectory "${CMAKE_INSTALL_PREFIX}/${ProjectName}")
+  set (InstallDirectory "${CMAKE_INSTALL_PREFIX}")
   re_LogInfoMultiline (PREFIX "${ProjectName}" "working directory:"
     "-> ${InstallDirectory}"
   )
-  set (OutputDirectory "${InstallDirectory}-VS")
+  set (OutputDirectory "${InstallDirectory}/${ProjectName}-VS")
   re_LogInfoMultiline (PREFIX "${ProjectName}" "build output directory:"
     "-> ${OutputDirectory}"
   )
@@ -40,7 +40,7 @@ endif ()
 set_target_properties ("${ProjectName}"
   PROPERTIES
     VS_DEBUGGER_WORKING_DIRECTORY
-      $<$<BOOL:${IsVisualStudio}>:${InstallDirectory}>
+      ${InstallDirectory}
     RUNTIME_OUTPUT_DIRECTORY
       $<$<BOOL:${IsVisualStudio}>:${OutputDirectory}>
 )

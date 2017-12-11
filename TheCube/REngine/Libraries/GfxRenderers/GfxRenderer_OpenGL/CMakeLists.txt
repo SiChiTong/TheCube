@@ -42,19 +42,14 @@ set_target_properties ("${Library_REngine_GfxRenderer}"
 # Set the build output directory
 if ("${re_var_IDE_BUILD_TOOL_GENERATOR}" STREQUAL "Visual Studio")
   set (IsVisualStudio TRUE)
-  set (InstallDirectory "${CMAKE_INSTALL_PREFIX}/${ProjectName}")
-  re_LogInfoMultiline (PREFIX "${SubprojectName}" "working directory:"
-    "-> ${InstallDirectory}"
-  )
-  set (OutputDirectory "${InstallDirectory}-VS")
+  set (InstallDirectory "${CMAKE_INSTALL_PREFIX}")
+  set (OutputDirectory "${InstallDirectory}/${ProjectName}-VS")
   re_LogInfoMultiline (PREFIX "${SubprojectName}" "build output directory:"
     "-> ${OutputDirectory}"
   )
 endif ()
 set_target_properties ("${Library_REngine_GfxRenderer}"
   PROPERTIES
-    VS_DEBUGGER_WORKING_DIRECTORY
-      $<$<BOOL:${IsVisualStudio}>:${InstallDirectory}>
     LIBRARY_OUTPUT_DIRECTORY
       $<$<BOOL:${IsVisualStudio}>:${OutputDirectory}>
 )

@@ -79,8 +79,10 @@ re_LogInfo (PREFIX "${LibraryProjectName}"
   "Using Toolchain: ${CMAKE_GENERATOR_TOOLSET}"
 )
 endif ()
-re_LogInfo (PREFIX "${LibraryProjectName}"
-  "Source directory: CMAKE_SOURCE_DIR=\"${CMAKE_SOURCE_DIR}\""
+re_LogInfoMultiline (PREFIX "${LibraryProjectName}"
+  "Build output directory: CMAKE_BINARY_DIR=\"${CMAKE_BINARY_DIR}\""
+  "Install directory:      CMAKE_INSTALL_PREFIX=\"${CMAKE_INSTALL_PREFIX}\""
+  "Source directory:       CMAKE_SOURCE_DIR=\"${CMAKE_SOURCE_DIR}\""
 )
 ################################################################################
 
