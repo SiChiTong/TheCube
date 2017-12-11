@@ -16,6 +16,7 @@ re_CreateSourceFilesList (Core_SourceFiles
   "Macros/Utilities.hpp"
   "Platform/Windows/DynamicLibrary_Windows.cpp"
   "Platform/Windows/DynamicLibrary_Windows.hpp"
+  "Platform/Windows/DynamicLibrary_Windows.inl"
   "Platform/Windows/ObjectHandle.cpp"
   "Platform/Windows/ObjectHandle.hpp"
   "Platform/Windows/ObjectHandle.inl"

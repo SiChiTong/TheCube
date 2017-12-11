@@ -28,7 +28,7 @@ inline const std::string_view
 inline bool
   DynamicLibrary::IsLoaded () noexcept
 {
-  return (nullptr == this->ptr_);
+  return this->ptr_->IsLoaded ();
 }
 
 inline void
