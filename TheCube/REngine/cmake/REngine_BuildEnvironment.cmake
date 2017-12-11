@@ -17,6 +17,8 @@ set (re_var_WINDOWS_MSVC_CLANG FALSE PARENT_SCOPE)
 ################################################################################
 # Supported platform ID variables
 ################################################################################
+set (re_var_UWP FALSE)
+set (re_var_UWP FALSE PARENT_SCOPE)
 set (re_var_WINDOWS FALSE)
 set (re_var_WINDOWS FALSE PARENT_SCOPE)
 ################################################################################
@@ -36,12 +38,18 @@ set (SUPPORTED_MSVC_VERSION "19.11")
 ################################################################################
 
 ################################################################################
-# Set variables for Windows Desktop
+# Set variables for Windows based platforms
 ################################################################################
 if (WIN32)
+  if (WINDOWS_STORE)
+    # Platform is Universal Windows Platform
+    set (re_var_UWP TRUE)
+    set (re_var_UWP TRUE PARENT_SCOPE)
+  else ()
   # Platform is Windows
-  set (re_var_WINDOWS TRUE)
-  set (re_var_WINDOWS TRUE PARENT_SCOPE)
+    set (re_var_WINDOWS TRUE)
+    set (re_var_WINDOWS TRUE PARENT_SCOPE)
+  endif ()
   # Identify the compiler
   if ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "MSVC")
     if ("${CMAKE_CXX_COMPILER_VERSION}"
@@ -52,6 +60,9 @@ if (WIN32)
       re_LogError ("Wrong compiler version")
     endif ()
   elseif ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "Clang")
+    if (WINDOWS_STORE)
+      re_LogError ("Wrong compiler version")
+    endif ()
     if ("${CMAKE_GENERATOR_TOOLSET}" MATCHES "LLVM"
         OR "${CMAKE_CXX_SIMULATE_ID}" MATCHES "MSVC")
       set (re_var_WINDOWS_MSVC_CLANG TRUE)
@@ -70,8 +81,8 @@ if (WIN32)
       "Unsupported compiler:"
       " ${CMAKE_CXX_COMPILER_ID} ${CMAKE_CXX_COMPILER_VERSION}"
     )
-  endif () #"${CMAKE_CXX_COMPILER_ID}" STREQUAL "MSVC")
-endif () # WIN32
+  endif ()
+endif ()
 ################################################################################
 
 ################################################################################

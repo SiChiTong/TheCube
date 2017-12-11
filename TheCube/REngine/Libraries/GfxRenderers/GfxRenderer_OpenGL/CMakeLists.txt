@@ -43,7 +43,12 @@ set_target_properties ("${Library_REngine_GfxRenderer}"
 if ("${re_var_IDE_BUILD_TOOL_GENERATOR}" STREQUAL "Visual Studio")
   set (IsVisualStudio TRUE)
   set (InstallDirectory "${CMAKE_INSTALL_PREFIX}")
-  set (OutputDirectory "${InstallDirectory}/${ProjectName}-VS")
+  if (re_var_UWP)
+    set (DirectoryPostfix "UWP")
+  else ()
+    set (DirectoryPostfix "VSIDE")
+  endif ()
+  set (OutputDirectory "${InstallDirectory}/${ProjectName}-${DirectoryPostfix}")
   re_LogInfoMultiline (PREFIX "${SubprojectName}" "build output directory:"
     "-> ${OutputDirectory}"
   )

@@ -27,23 +27,28 @@ set_property (DIRECTORY ${CMAKE_SOURCE_DIR}
 )
 # Set the build output directory
 if ("${re_var_IDE_BUILD_TOOL_GENERATOR}" STREQUAL "Visual Studio")
-  set (IsVisualStudio TRUE)
   set (InstallDirectory "${CMAKE_INSTALL_PREFIX}")
   re_LogInfoMultiline (PREFIX "${ProjectName}" "working directory:"
     "-> ${InstallDirectory}"
   )
-  set (OutputDirectory "${InstallDirectory}/${ProjectName}-VS")
+  if (re_var_UWP)
+    set (DirectoryPostfix "UWP")
+  else ()
+    set (DirectoryPostfix "VSIDE")
+  endif ()
+  set (OutputDirectory "${InstallDirectory}/${ProjectName}-${DirectoryPostfix}")
   re_LogInfoMultiline (PREFIX "${ProjectName}" "build output directory:"
     "-> ${OutputDirectory}"
   )
+  set (IsVisualStudio TRUE)
+  set_target_properties ("${ProjectName}"
+    PROPERTIES
+      VS_DEBUGGER_WORKING_DIRECTORY
+        ${InstallDirectory}
+      RUNTIME_OUTPUT_DIRECTORY
+        $<$<BOOL:${IsVisualStudio}>:${OutputDirectory}>
+  )
 endif ()
-set_target_properties ("${ProjectName}"
-  PROPERTIES
-    VS_DEBUGGER_WORKING_DIRECTORY
-      ${InstallDirectory}
-    RUNTIME_OUTPUT_DIRECTORY
-      $<$<BOOL:${IsVisualStudio}>:${OutputDirectory}>
-)
 
 # Set linker flags
 if (re_var_WINDOWS_MSVC)
@@ -59,8 +64,7 @@ if (re_var_WINDOWS_MSVC)
     "/MANIFESTUAC:NO"
   )
   # Set linker flags for UWP configurations
-  if ("${CMAKE_SYSTEM_NAME}" STREQUAL "WindowsStore"
-  )
+  if (re_var_UWP)
     re_SetLinkerFlags ("${ProjectName}" DEBUG
       # Fix warning LNK4075 for WinRT debug builds
       # "LNK4075: ignoring '/INCREMENTAL' due to '/OPT:ICF' specification"

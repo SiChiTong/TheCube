@@ -161,7 +161,7 @@ target_include_directories ("${Library_REngine_Base}"
 )
 
 # Add the C++/WinRT header files
-if ("${CMAKE_SYSTEM_NAME}" STREQUAL "WindowsStore")
+if (re_var_UWP)
   target_include_directories ("${Library_REngine_Base}"
     INTERFACE
       "$ENV{cppwinrt}"
