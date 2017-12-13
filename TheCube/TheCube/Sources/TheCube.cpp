@@ -14,7 +14,8 @@
 auto
   main (int argc, const char* argv[]) -> int
 {
-  REngine::Application application;
+  REngine::System::Settings settings{ argc, argv };
+  REngine::Application application{ settings };
   application.Initialize ();
 
   return 0;

@@ -25,6 +25,14 @@
 NAMESPACE_BEGIN (REngine)
 ////////////////////////////////////////////////////////////////////////////////
 
+// Constructors
+Application::Application () {}
+Application::Application (const System::Settings& settings)
+{
+  auto seetings = settings.Get ();
+}
+
+// Methods
 void
   Application::Initialize ()
 {

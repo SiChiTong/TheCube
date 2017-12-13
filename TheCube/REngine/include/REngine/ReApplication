@@ -1,3 +1,4 @@
 #pragma once
 
 #include "../../Libraries/REngine/Sources/Application.hpp"
+#include "../../Libraries/REngine/Sources/System/Settings.hpp"
