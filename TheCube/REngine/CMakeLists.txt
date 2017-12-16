@@ -96,12 +96,12 @@ include_directories ("${CMAKE_CURRENT_SOURCE_DIR}/include")
 # Subprojects
 ################################################################################
 # Interface library that needs to be linked by every subsequent project
-add_subdirectory (Libraries/Base)
+add_subdirectory ("Libraries/Base")
 # Core library that contains common utility functions
-add_subdirectory (Libraries/Core)
+add_subdirectory ("Libraries/Core")
 # Sub-libraries in subdirectories
-add_subdirectory (Libraries/GfxRenderers)
-add_subdirectory (Libraries/Math)
+add_subdirectory ("Libraries/GfxRenderers")
+add_subdirectory ("Libraries/Math")
 # Main library that exports headers and symbols
-add_subdirectory (Libraries/REngine)
+add_subdirectory ("Libraries/REngine")
 ################################################################################

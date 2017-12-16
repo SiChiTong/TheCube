@@ -37,7 +37,8 @@ include (${CMAKE_CURRENT_SOURCE_DIR}/cmake/Math_Base_SourceFiles.cmake)
 add_library ("${Library_REngine_Math_Base}" STATIC ${Math_Base_SourceFiles})
 # Add to a project folder for generators that support this feature
 set_target_properties ("${Library_REngine_Math_Base}" 
-  PROPERTIES FOLDER "${SubprojectFolder}"
+  PROPERTIES FOLDER
+    "${SubprojectFolder}"
 )
 
 # Link libraries

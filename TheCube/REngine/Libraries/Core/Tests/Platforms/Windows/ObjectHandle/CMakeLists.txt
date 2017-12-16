@@ -1,6 +1,6 @@
 ################################################################################
 # Subproject: Core (private REngine)
-# Test: String
+# Test: ObjectHandle
 ################################################################################
 
 ################################################################################
@@ -20,8 +20,9 @@ set (${TestName}_SourceFiles
 # Define the target
 add_executable ("${TestName}" ${${TestName}_SourceFiles})
 # Add to a project folder for generators that support this feature
-set_target_properties ("${TestName}" 
-  PROPERTIES FOLDER "${ProjectFolder_Tests}/Libraries/${SubprojectName}/${Platform}"
+set_target_properties ("${TestName}"
+  PROPERTIES FOLDER
+    "${ProjectFolder_Tests}/Libraries/${SubprojectName}/${Platform}"
 )
 # Link libraries
 target_link_libraries ("${TestName}"

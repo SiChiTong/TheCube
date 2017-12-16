@@ -20,7 +20,8 @@ add_library ("${Library_REngine}" STATIC
 )
 # Add to a project folder for generators that support this feature
 set_target_properties ("${Library_REngine}" 
-  PROPERTIES FOLDER "${ProjectFolder_Libraries}"
+  PROPERTIES FOLDER
+    "${ProjectFolder_Libraries}"
 )
 
 # Link libraries

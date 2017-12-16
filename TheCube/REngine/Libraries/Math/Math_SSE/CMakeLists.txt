@@ -38,7 +38,8 @@ add_library ("${Library_REngine_Math_SSE}" STATIC ${Math_SSE_SourceFiles})
 
 # Add to a project folder for generators that support this feature
 set_target_properties ("${Library_REngine_Math_SSE}"
-  PROPERTIES FOLDER "${SubprojectFolder}"
+  PROPERTIES FOLDER
+    "${SubprojectFolder}"
 )
 
 # Header files

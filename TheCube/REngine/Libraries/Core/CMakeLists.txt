@@ -39,7 +39,8 @@ add_library ("${Library_REngine_Core}" STATIC
 )
 # Add to a project folder for generators that support this feature
 set_target_properties ("${Library_REngine_Core}"
-  PROPERTIES FOLDER "${ProjectFolder_Libraries}"
+  PROPERTIES FOLDER
+    "${ProjectFolder_Libraries}"
 )
 
 # Header files

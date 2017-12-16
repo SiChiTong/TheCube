@@ -37,7 +37,8 @@ include (${CMAKE_CURRENT_SOURCE_DIR}/cmake/GfxRenderer_SourceFiles.cmake)
 add_library ("${Library_REngine_GfxRenderer}" MODULE ${GfxRenderer_SourceFiles})
 # Add to a project folder for generators that support this feature
 set_target_properties ("${Library_REngine_GfxRenderer}" 
-  PROPERTIES FOLDER "${SubprojectFolder}"
+  PROPERTIES FOLDER
+    "${SubprojectFolder}"
 )
 # Set the build output directory
 if ("${re_var_IDE_BUILD_TOOL_GENERATOR}" STREQUAL "Visual Studio")
