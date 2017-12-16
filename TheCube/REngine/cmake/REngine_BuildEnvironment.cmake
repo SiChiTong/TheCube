@@ -17,10 +17,12 @@ set (re_var_WINDOWS_MSVC_CLANG FALSE PARENT_SCOPE)
 ################################################################################
 # Supported platform ID variables
 ################################################################################
-set (re_var_UWP FALSE)
-set (re_var_UWP FALSE PARENT_SCOPE)
 set (re_var_WINDOWS FALSE)
 set (re_var_WINDOWS FALSE PARENT_SCOPE)
+set (re_var_WINDOWS_DESKTOP FALSE)
+set (re_var_WINDOWS_DESKTOP FALSE PARENT_SCOPE)
+set (re_var_WINDOWS_UWP FALSE)
+set (re_var_WINDOWS_UWP FALSE PARENT_SCOPE)
 ################################################################################
 
 ################################################################################
@@ -41,14 +43,16 @@ set (SUPPORTED_MSVC_VERSION "19.11")
 # Set variables for Windows based platforms
 ################################################################################
 if (WIN32)
+  set (re_var_WINDOWS TRUE)
+  set (re_var_WINDOWS TRUE PARENT_SCOPE)
   if (WINDOWS_STORE)
     # Platform is Universal Windows Platform
-    set (re_var_UWP TRUE)
-    set (re_var_UWP TRUE PARENT_SCOPE)
+    set (re_var_WINDOWS_UWP TRUE)
+    set (re_var_WINDOWS_UWP TRUE PARENT_SCOPE)
   else ()
-  # Platform is Windows
-    set (re_var_WINDOWS TRUE)
-    set (re_var_WINDOWS TRUE PARENT_SCOPE)
+  # Platform is Windows Desktop
+    set (re_var_WINDOWS_DESKTOP TRUE)
+    set (re_var_WINDOWS_DESKTOP TRUE PARENT_SCOPE)
   endif ()
   # Identify the compiler
   if ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "MSVC")

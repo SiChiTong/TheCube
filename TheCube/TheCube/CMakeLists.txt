@@ -31,7 +31,7 @@ if ("${re_var_IDE_BUILD_TOOL_GENERATOR}" STREQUAL "Visual Studio")
   re_LogInfoMultiline (PREFIX "${ProjectName}" "working directory:"
     "-> ${InstallDirectory}"
   )
-  if (re_var_UWP)
+  if (re_var_WINDOWS_UWP)
     set (DirectoryPostfix "UWP")
   else ()
     set (DirectoryPostfix "VSIDE")
@@ -64,9 +64,9 @@ if (re_var_WINDOWS_MSVC)
     "/MANIFESTUAC:NO"
   )
   # Set linker flags for UWP configurations
-  if (re_var_UWP)
+  if (re_var_WINDOWS_UWP)
     re_SetLinkerFlags ("${ProjectName}" DEBUG
-      # Fix warning LNK4075 for WinRT debug builds
+      # Fix warning LNK4075 for UWP debug builds
       # "LNK4075: ignoring '/INCREMENTAL' due to '/OPT:ICF' specification"
       "/OPT:NOICF"
       "/OPT:NOREF"

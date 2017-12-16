@@ -35,7 +35,7 @@ re_CreateSourceFilesList (Core_SourceFiles
   "implementedBy.hpp"
 )
 
-if (re_var_WINDOWS OR re_var_UWP)
+if (re_var_WINDOWS)
   # A list with the Target's source files
   re_AppendToSourceFilesList (Core_SourceFiles 
     "Sources" HIDE "Source Files"

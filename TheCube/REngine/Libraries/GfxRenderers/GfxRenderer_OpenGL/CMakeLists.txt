@@ -44,7 +44,7 @@ set_target_properties ("${Library_REngine_GfxRenderer}"
 if ("${re_var_IDE_BUILD_TOOL_GENERATOR}" STREQUAL "Visual Studio")
   set (IsVisualStudio TRUE)
   set (InstallDirectory "${CMAKE_INSTALL_PREFIX}")
-  if (re_var_UWP)
+  if (re_var_WINDOWS_UWP)
     set (DirectoryPostfix "UWP")
   else ()
     set (DirectoryPostfix "VSIDE")
