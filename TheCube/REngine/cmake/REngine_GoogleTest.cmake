@@ -44,7 +44,8 @@ if (option_EnableUnitTests)
   )
   # Add to a project folder for generators that support this feature
   set_target_properties (gtest gtest_main gmock gmock_main
-    PROPERTIES FOLDER "${ProjectFolder_Tests}/GoogleTest"
+    PROPERTIES FOLDER
+      "${ProjectFolder_Tests}/GoogleTest"
   )
   # Do not use GTest TR1 tuple
   target_compile_definitions (gtest

@@ -3,6 +3,7 @@ if (option_EnableUnitTests)
 
   if (re_var_WINDOWS)
     set (Platform "Platforms/Windows")
+    add_subdirectory ("${Platform}/ComPtr")
     add_subdirectory ("${Platform}/ObjectHandle")
   endif ()
 
