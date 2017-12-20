@@ -1,0 +1,6 @@
+#pragma once
+
+#if defined(_WINDOWS)
+#  include "../../../Libraries/Core/Sources/Platforms/Windows/ComPtr.hpp"
+#  include "../../../Libraries/Core/Sources/Platforms/Windows/ObjectHandle.hpp"
+#endif

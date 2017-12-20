@@ -12,6 +12,9 @@ re_CreateSourceFilesList (REngine_HeaderFiles
   # Header files
   "REngine/Core/ReCore"
   "REngine/Core/ReCoreBase"
+  "REngine/Core/RePlatformInternals"
+  "REngine/Core/ReString"
+  "REngine/Core/ReStringView"
   "REngine/GfxRenderers/ReIGfxRenderer"
   "REngine/Math/ReArithmetics"
   "REngine/Math/ReMatrix"
