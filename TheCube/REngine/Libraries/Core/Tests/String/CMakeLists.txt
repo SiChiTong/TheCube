@@ -12,9 +12,12 @@ set (TestName "String")
 ################################################################################
 # Test target
 ################################################################################
+
 # Include the source files
-set (${TestName}_SourceFiles
-  "Sources/StringTest.cpp"
+re_CreateSourceFilesList (${TestName}_SourceFiles
+  "Sources" HIDE "Source Files"
+  # Source files
+  "StringTest.cpp"
 )
 
 # Define the target

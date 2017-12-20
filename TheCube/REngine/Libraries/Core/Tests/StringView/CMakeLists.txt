@@ -12,9 +12,12 @@ set (TestName "StringView")
 ################################################################################
 # Test target
 ################################################################################
+
 # Include the source files
-set (${TestName}_SourceFiles
-  "Sources/StringViewTest.cpp"
+re_CreateSourceFilesList (${TestName}_SourceFiles
+  "Sources" HIDE "Source Files"
+  # Source files
+  "StringViewTest.cpp"
 )
 
 # Define the target

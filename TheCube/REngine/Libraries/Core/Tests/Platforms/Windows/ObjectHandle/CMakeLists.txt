@@ -12,9 +12,12 @@ set (TestName "ObjectHandle")
 ################################################################################
 # Test target
 ################################################################################
+
 # Include the source files
-set (${TestName}_SourceFiles
-  "Sources/ObjectHandleTest.cpp"
+re_CreateSourceFilesList (${TestName}_SourceFiles
+  "Sources" HIDE "Source Files"
+  # Source files
+  "ObjectHandleTest.cpp"
 )
 
 # Define the target
