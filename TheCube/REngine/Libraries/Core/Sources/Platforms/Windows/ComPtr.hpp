@@ -39,23 +39,55 @@ class ComPtr
   ComPtr (const ComPtr& other) noexcept;
   template <typename I_>
   ComPtr (const ComPtr<I_>& other) noexcept;
-  ComPtr (ComPtr&& other) noexcept;
+  template <typename I_>
+  ComPtr (ComPtr<I_>&& other) noexcept;
 
  public:
-  ComPtr& operator= (const ComPtr& other) noexcept;
+  auto operator= (const ComPtr& other) noexcept -> ComPtr&;
   template <typename I_>
-  ComPtr& operator= (const ComPtr<I_>& other) noexcept;
-  ComPtr& operator= (ComPtr&& other) noexcept;
+  auto operator= (const ComPtr<I_>& other) noexcept -> ComPtr&;
+  template <typename I_>
+  auto operator= (ComPtr<I_>&& other) noexcept -> ComPtr&;
+
+  template <typename I_>
+  friend class ComPtr;
+
+ public:
+  // Returns an object of the requested interface if supported (see auto GetAs
+  // (ComPtr<I_>& other) noexcept -> HRESULT)
+  template <typename I_>
+  auto GetAs () noexcept -> ComPtr<I_>;
+  // Returns an object of the requested interface if supported (see auto GetAs
+  // () noexcept -> ComPtr<I_>)
+  template <typename I_>
+  auto GetAs (ComPtr<I_>& other) noexcept -> HRESULT;
+  // Returns the interface pointer
+  auto Get () const noexcept -> I*;
+  // Returns the address of the interface pointer (see auto operator& ()
+  // noexcept -> I**)
+  auto GetAddressOf () noexcept -> I**;
+  // Releases the interface pointer
+  auto Release () noexcept -> I*;
+  // Replaces the interface pointer
+  void Reset (I* ptr = nullptr) noexcept;
+  // Swaps the interface pointers of both ComPtr objects
+  void Swap (ComPtr& other) noexcept;
 
  public:
   // Class dereference operator
   auto operator-> () const noexcept -> ComPtr_<I>*;
-  auto Release () noexcept -> I*;
-  void Reset (I* ptr = nullptr) noexcept;
+  // Returns the address of the interface pointer (see auto GetAddressOf ()
+  // noexcept -> I**)
+  auto operator& () noexcept -> I**;
+  // Returns true if the smart pointer object holds a valid interface pointer
+  explicit operator bool () const noexcept;
 
  private:
-  void AddRef () noexcept;
-  void Release () noexcept;
+  void IAddRef () noexcept;
+  void ICopy (const ComPtr& other) noexcept;
+  auto IGetAddressOf () noexcept -> I**;
+  void IMove (ComPtr&& other) noexcept;
+  void IRelease () noexcept;
 
  private:
   I* ptr_ = nullptr;

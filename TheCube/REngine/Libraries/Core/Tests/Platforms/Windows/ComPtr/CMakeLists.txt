@@ -12,9 +12,14 @@ set (TestName "ComPtr")
 ################################################################################
 # Test target
 ################################################################################
+
 # Include the source files
-set (${TestName}_SourceFiles
-  "Sources/ComPtrTest.cpp"
+re_CreateSourceFilesList (${TestName}_SourceFiles
+  "Sources" HIDE "Source Files"
+  # Source files
+  "ComInterfaces.cpp"
+  "ComInterfaces.hpp"
+  "ComPtrTest.cpp"
 )
 
 # Define the target
