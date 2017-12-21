@@ -25,18 +25,20 @@ TEST (ObjectHandle, NullptrHandle)
   HANDLE rawHandle1 = CreateEvent (nullptr, true, false, nullptr);
 
   // Constructor
-  REngine::Core::NullptrHandle eventHandle1{ rawHandle1 };
+  REngine::Core::Platforms::Windows::NullptrHandle eventHandle1{ rawHandle1 };
 
   ASSERT_NE (nullptr, eventHandle1.Get ());
 
   // Move constructor
-  REngine::Core::NullptrHandle eventHandle2{ std::move (eventHandle1) };
+  REngine::Core::Platforms::Windows::NullptrHandle eventHandle2{ std::move (
+    eventHandle1) };
 
   ASSERT_EQ (nullptr, eventHandle1.Get ());
   ASSERT_NE (nullptr, eventHandle2.Get ());
 
   // Move assignment operator
-  REngine::Core::NullptrHandle eventHandle3 = std::move (eventHandle2);
+  REngine::Core::Platforms::Windows::NullptrHandle eventHandle3 =
+    std::move (eventHandle2);
 
   ASSERT_EQ (nullptr, eventHandle2.Get ());
   ASSERT_NE (nullptr, eventHandle3.Get ());
@@ -79,18 +81,23 @@ TEST (ObjectHandle, InvalidValueHandle)
     reVerify (INVALID_HANDLE_VALUE != rawHandle1);
 
     // Constructor
-    REngine::Core::InvalidValueHandle eventHandle1{ rawHandle1 };
+    REngine::Core::Platforms::Windows::InvalidValueHandle eventHandle1{
+      rawHandle1
+    };
 
     ASSERT_NE (INVALID_HANDLE_VALUE, eventHandle1.Get ());
 
     // Move constructor
-    REngine::Core::InvalidValueHandle eventHandle2{ std::move (eventHandle1) };
+    REngine::Core::Platforms::Windows::InvalidValueHandle eventHandle2{
+      std::move (eventHandle1)
+    };
 
     ASSERT_EQ (INVALID_HANDLE_VALUE, eventHandle1.Get ());
     ASSERT_NE (INVALID_HANDLE_VALUE, eventHandle2.Get ());
 
     // Move assignment operator
-    REngine::Core::InvalidValueHandle eventHandle3 = std::move (eventHandle2);
+    REngine::Core::Platforms::Windows::InvalidValueHandle eventHandle3 =
+      std::move (eventHandle2);
 
     ASSERT_EQ (INVALID_HANDLE_VALUE, eventHandle2.Get ());
     ASSERT_NE (INVALID_HANDLE_VALUE, eventHandle3.Get ());
