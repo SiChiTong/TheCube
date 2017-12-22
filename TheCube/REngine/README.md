@@ -39,7 +39,9 @@ REngine                                               <- Package name
 ```
 
 ### Core
+
 Provides basic system specific services.
+
 ```
 Core                                                  <- Subproject name
   |
@@ -61,6 +63,7 @@ Core                                                  <- Subproject name
 ```
 
 ### Math
+
 ```
 Math                                                  <- Subprojects group name
   |
@@ -105,6 +108,7 @@ Math                                                  <- Subprojects group name
 ```
 
 ### GfxRenderers
+
 ```
 GfxRenderers                                          <- Subprojects group name
   |
@@ -132,3 +136,14 @@ GfxRenderers                                          <- Subprojects group name
   |
   +-- CMakeLists.txt
 ```
+
+## Linking
+
+The REngine library sets the variable `re_var_Library_REngine` which executable targets should link to:
+
+```
+target_link_libraries ("${ProjectName}"
+	"${re_var_Library_REngine}" # Defined in the REngine library
+)
+```
+For more information: [Libraries/README.md](Libraries/README.md#Subprojects)
