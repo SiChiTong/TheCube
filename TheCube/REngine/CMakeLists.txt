@@ -99,6 +99,8 @@ include_directories ("${CMAKE_CURRENT_SOURCE_DIR}/include")
 add_subdirectory ("Libraries/Base")
 # Core library that contains common utility functions
 add_subdirectory ("Libraries/Core")
+# Logging library
+add_subdirectory ("Libraries/Logger")
 # Sub-libraries in subdirectories
 add_subdirectory ("Libraries/GfxRenderers")
 add_subdirectory ("Libraries/Math")

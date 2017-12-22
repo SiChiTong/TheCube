@@ -29,6 +29,10 @@ target_link_libraries ("${Library_REngine}"
   PUBLIC
     "${Library_REngine_Core}"
 )
+target_link_libraries ("${Library_REngine}"
+  PUBLIC
+    "${Library_REngine_Logger}"
+)
 set (REngine_Math "Math_AVX"
   CACHE STRING "Select a Math library variant"
 )
