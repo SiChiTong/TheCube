@@ -32,6 +32,10 @@
           "value": "YES"
         },
         {
+          "name": "option_EnableLogging:BOOL",
+          "value": "YES"
+        },
+        {
           "name": "option_EnableUnitTests:BOOL",
           "value": "NO"
         },
@@ -80,6 +84,10 @@
       "variables": [
         {
           "name": "option_EnableAssertions:BOOL",
+          "value": "YES"
+        },
+        {
+          "name": "option_EnableLogging:BOOL",
           "value": "YES"
         },
         {
@@ -178,6 +186,14 @@
           "value": "OFF"
         },
         {
+          "name": "option_EnableAssertions:BOOL",
+          "value": "YES"
+        },
+        {
+          "name": "option_EnableLogging:BOOL",
+          "value": "YES"
+        },
+        {
           "name": "option_EnableUnitTests:BOOL",
           "value": "NO"
         },
@@ -205,7 +221,7 @@
           "value": "YES"
         },
         {
-          "name": "option_EnableAssertions:BOOL",
+          "name": "option_EnableLogging:BOOL",
           "value": "YES"
         },
         {

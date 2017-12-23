@@ -12,6 +12,7 @@ re_CreateSourceFilesList (${SubprojectName}_SourceFiles
   # Source files
   "Logger.cpp"
   "Logger.hpp"
+  "Logger.inl"
 )
 
 if (re_var_WINDOWS)

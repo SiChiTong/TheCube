@@ -42,6 +42,9 @@ set (re_cache_EnableExperimentalLanguageFeatures FALSE
 option (option_EnableAssertions 
   "Enable run-time assertions" NO
 )
+option (option_EnableLogging 
+  "Enable run-time logging" NO
+)
 ################################################################################
 
 ################################################################################
@@ -65,6 +68,7 @@ add_library ("${Library_REngine_Base}" INTERFACE)
 target_compile_definitions("${Library_REngine_Base}"
   INTERFACE
     $<$<BOOL:${option_EnableAssertions}>:ASSERT_ENABLED>
+    $<$<BOOL:${option_EnableLogging}>:LOGGING_ENABLED>
     $<$<BOOL:${re_var_WINDOWS}>:_UNICODE>
     $<$<BOOL:${re_var_WINDOWS}>:UNICODE>
     $<$<BOOL:${re_var_WINDOWS}>:WIN32_LEAN_AND_MEAN>

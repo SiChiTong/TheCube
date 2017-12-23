@@ -1,3 +1,27 @@
 #pragma once
 
 #include "../Sources/Logger.hpp"
+
+#if defined(LOGGING_ENABLED)
+#  if !defined(reLog_Initialize)
+#    define reLogInitialize() Logger::Initialize ()
+#  else
+#    error Macro reLogInitialize is already defined...
+#  endif // !defined (reLog_Initialize)
+#  if !defined(reLog_Initialize)
+#    define reLogger() Logger::Instance ();
+#  else
+#    error Macro reLogInitialize is already defined...
+#  endif // !defined (reLog_Initialize)
+#  if !defined(reLOG)
+#    define reLOG(message)
+#  else
+#    error Macro reLOG is already defined...
+#  endif // !defined (reLOG)
+#else
+#  if !defined(reLOG)
+#    define reLOG (message)
+#  else
+#    error Macro reLOG is already defined...
+#  endif // !defined (reLOG)
+#endif   // defined (LOGGING_ENABLED)

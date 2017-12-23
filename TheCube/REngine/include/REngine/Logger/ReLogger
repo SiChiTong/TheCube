@@ -1,6 +1,4 @@
 #pragma once
 
-namespace REngine::Logger
-{
 #include "../../../Libraries/Logger/include/Logger"
-}
+

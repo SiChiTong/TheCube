@@ -16,6 +16,7 @@ re_CreateSourceFilesList (REngine_HeaderFiles
   "REngine/Core/ReString"
   "REngine/Core/ReStringView"
   "REngine/GfxRenderers/ReIGfxRenderer"
+  "REngine/Logger/ReLogger"
   "REngine/Math/ReArithmetics"
   "REngine/Math/ReMatrix"
   "REngine/Math/ReVector"
