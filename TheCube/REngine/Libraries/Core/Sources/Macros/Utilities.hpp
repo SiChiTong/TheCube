@@ -44,6 +44,6 @@
     } // namespace
 #else
 #  error Macro __Supress_Warning__(warning) is already defined...
-#endif // !defined (__Supress_Warning_LNK4221__)
+#endif // !defined(__Supress_Warning__)
 
 ////////////////////////////////////////////////////////////////////////////////
