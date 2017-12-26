@@ -31,6 +31,8 @@ REngine                                               <- Package name
         |
         +-- Core                                      <- Static library with system services
         |
+        +-- Logger                                    <- A self-contained static logging library
+        |
         +-- Math                                      <- Static math libraries
         |
         +-- GfxRenderers                              <- Dynamic graphics renderer libraries
@@ -55,10 +57,32 @@ Core                                                  <- Subproject name
   |               ...
   |
   +-- Sources                                         <- Private includes and source
-        +-- Platform
+        +-- Platforms
               +-- Windows
             Core.cpp
             Core.hpp
+            ...
+```
+
+### Logger
+
+Provides basic logging facilities.
+
+```
+Logger                                                <- Subproject name
+  |
+  +-- cmake
+  |     +-- Logger_SourceFiles.cmake                  <- Source files list
+  |
+  +-- include                                         <- Public includes
+  |     +-- Logger
+  |           +-- Logger
+  |
+  +-- Sources                                         <- Private includes and source
+        +-- Platforms
+              +-- Windows
+            Logger.cpp
+            Logger.hpp
             ...
 ```
 
