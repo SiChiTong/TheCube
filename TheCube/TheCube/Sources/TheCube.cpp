@@ -16,11 +16,14 @@ auto
   main (int argc, const char* argv[]) -> int
 {
   reLogInitialize ();
-  reLogger ();
+  Logger::Policy::Console consolePolicy;
+  consolePolicy.CreateConsole = true;
+  reLogger ()->SetPolicy (consolePolicy);
   REngine::System::Settings settings{ argc, argv };
   REngine::Application application{ settings };
   application.Initialize ();
 
   return 0;
 }
+
 ////////////////////////////////////////////////////////////////////////////////

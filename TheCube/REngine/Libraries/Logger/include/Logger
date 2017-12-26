@@ -4,12 +4,12 @@
 
 #if defined(LOGGING_ENABLED)
 #  if !defined(reLog_Initialize)
-#    define reLogInitialize() Logger::Initialize ()
+#    define reLogInitialize() Logger::Logger::Initialize ()
 #  else
 #    error Macro reLogInitialize is already defined...
 #  endif // !defined (reLog_Initialize)
 #  if !defined(reLog_Initialize)
-#    define reLogger() Logger::Instance ();
+#    define reLogger() Logger::Logger::Instance ()
 #  else
 #    error Macro reLogInitialize is already defined...
 #  endif // !defined (reLog_Initialize)
