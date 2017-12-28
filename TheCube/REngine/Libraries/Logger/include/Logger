@@ -1,18 +1,24 @@
 #pragma once
 
+////////////////////////////////////////////////////////////////////////////////
+// Logger Library
+////////////////////////////////////////////////////////////////////////////////
+#include "../Sources/Macros/UtilityMacros.hpp"
+#include "../Sources/Platforms/Logger_Platforms.hpp"
 #include "../Sources/Logger.hpp"
+////////////////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////////////////
+// Logging macros
+////////////////////////////////////////////////////////////////////////////////
 
 #if defined(LOGGING_ENABLED)
-#  if !defined(reLog_Initialize)
-#    define reLogInitialize() Logger::Logger::Initialize ()
+#  if !defined(reLogger)
+#    define reLogger()                                                         \
+      ReLogger::Instance ()
 #  else
-#    error Macro reLogInitialize is already defined...
-#  endif // !defined (reLog_Initialize)
-#  if !defined(reLog_Initialize)
-#    define reLogger() Logger::Logger::Instance ()
-#  else
-#    error Macro reLogInitialize is already defined...
-#  endif // !defined (reLog_Initialize)
+#    error Macro reLogger is already defined...
+#  endif // !defined (reLogger)
 #  if !defined(reLOG)
 #    define reLOG(message)
 #  else
@@ -25,3 +31,5 @@
 #    error Macro reLOG is already defined...
 #  endif // !defined (reLOG)
 #endif   // defined (LOGGING_ENABLED)
+
+////////////////////////////////////////////////////////////////////////////////
