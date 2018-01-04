@@ -14,10 +14,6 @@ set (CMAKE_MODULE_PATH
   # CMAKE_SOURCE_DIR - The path to the top level of the source tree.
   ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/REngine/cmake/"
 )
-# Set the CMake modules path for the parent projects
-set (CMAKE_MODULE_PATH 
-  ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/REngine/cmake/" PARENT_SCOPE
-)
 include ("REngine")
 ################################################################################
 

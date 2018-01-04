@@ -8,11 +8,13 @@ if (option_EnableUnitTests)
   set (GoogleTest_Project "${CMAKE_CURRENT_SOURCE_DIR}/Tests")
   set (GoogleTest_Directory "${CMAKE_BINARY_DIR}/GoogleTest")
 
+  # Copy CMakeLists.txt defining the GTest target to the target directory
   configure_file (
     "${GoogleTest_Project}/CMakeLists.txt.in"
     "${GoogleTest_Directory}/CMakeLists.txt"
   )
-
+  # Execute CMake to download GTest and to generate the respective build system
+  # in the target directory
   execute_process (
     COMMAND ${CMAKE_COMMAND} -G "${CMAKE_GENERATOR}" .
     RESULT_VARIABLE result
@@ -21,7 +23,7 @@ if (option_EnableUnitTests)
   if (result)
     message (FATAL_ERROR "CMake step for googletest failed: ${result}")
   endif()
-
+  # Build GTest in the target directory
   execute_process (
     COMMAND ${CMAKE_COMMAND} --build .
     RESULT_VARIABLE result
