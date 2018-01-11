@@ -37,7 +37,7 @@
         },
         {
           "name": "option_EnableUnitTests:BOOL",
-          "value": "NO"
+          "value": "YES"
         },
         {
           "name": "option_Executable_EnableRequireAdministrator:BOOL",
@@ -61,7 +61,7 @@
       "variables": [
         {
           "name": "option_EnableUnitTests:BOOL",
-          "value": "NO"
+          "value": "YES"
         },
         {
           "name": "option_Executable_EnableRequireAdministrator:BOOL",
