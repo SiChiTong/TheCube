@@ -43,12 +43,6 @@ set_target_properties ("${Library_REngine_Core}"
     "${ProjectFolder_Libraries}"
 )
 
-# Header files
-target_include_directories ("${Library_REngine_Core}"
-  PRIVATE
-  "${CMAKE_CURRENT_SOURCE_DIR}/Sources"
-)
-
 if (re_var_WINDOWS_MSVC_CLANG)
   # This librabry contains empty *.cpp!
   # Suppress warning LNK4221: This object file does not define any previously
