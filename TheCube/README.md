@@ -14,6 +14,12 @@ TheCube                                               <- Project name
 
 # Coding style
 
+## Code Formatting
+
+- Use **ClangFormat** to apply the format definitions from **.clang-format**.
+- Use `// clang-format on` and `clang-format off` wherever appropriate  to 
+prevent **ClangFormat** from changing the desired code formatting.
+
 ## Header Files Include Order
 
 1. Corresponding header file
